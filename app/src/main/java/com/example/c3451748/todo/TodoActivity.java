@@ -4,6 +4,7 @@ package com.example.c3451748.todo;
         import android.content.res.Resources;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.View;
         import android.view.View.OnClickListener;
         import android.widget.Button;
@@ -13,13 +14,31 @@ public class TodoActivity extends AppCompatActivity {
 
     private String[] mTodos;
     private int mTodoIndex = 0;
+    public static final String TAG = "TodoActivity";
+
+
+    private static final String TODO_INDEX = "todoIndex";
+    // override to write the value of mTodoIndex into the Bundle with TODO_INDEX as its key
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(TODO_INDEX, mTodoIndex);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // check for saved state due to changes such as rotation or back button
+        // and restore any saved state such as the todo index
+        if (savedInstanceState != null){
+            mTodoIndex = savedInstanceState.getInt(TODO_INDEX, 0);
+        }
+
         // call the super class onCreate to complete the creation of activity like
         // the view hierarchy
         super.onCreate(savedInstanceState);
+
+        Log.d(TAG, " *** Just to say the PC is in onCreate!");
 
         // set the user interface layout for this Activity
         // the layout file is defined in the project res/layout/activity_todo.xml file
