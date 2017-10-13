@@ -28,11 +28,6 @@ public class TodoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // check for saved state due to changes such as rotation or back button
-        // and restore any saved state such as the todo index
-        if (savedInstanceState != null){
-            mTodoIndex = savedInstanceState.getInt(TODO_INDEX, 0);
-        }
 
         // call the super class onCreate to complete the creation of activity like
         // the view hierarchy
@@ -44,6 +39,12 @@ public class TodoActivity extends AppCompatActivity {
         // the layout file is defined in the project res/layout/activity_todo.xml file
         setContentView(R.layout.activity_todo);
 
+        // check for saved state due to changes such as rotation or back button
+        // and restore any saved state such as the todo index
+        if (savedInstanceState != null){
+            mTodoIndex = savedInstanceState.getInt(TODO_INDEX, 0);
+        }
+
         // initialize member TextView so we can manipulate it later
         final TextView TodoTextView;
         TodoTextView = (TextView) findViewById(R.id.textViewTodo);
@@ -54,19 +55,15 @@ public class TodoActivity extends AppCompatActivity {
         // display the first task from mTodo array in the TodoTextView
         TodoTextView.setText(mTodos[mTodoIndex]);
 
-        Button buttonNext;
-        Button buttonPrev;
-
-        buttonNext = (Button) findViewById(R.id.buttonNext);
-        buttonPrev = (Button) findViewById(R.id.buttonPrev);
-
+        Button buttonNext = (Button) findViewById(R.id.buttonNext);
+        Button buttonPrev = (Button) findViewById(R.id.buttonPrev);
+        Button buttonTodoDetail = (Button) findViewById(R.id.buttonTodoDetail);
 
         // OnClick listener for the  Next button
         buttonNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 mTodoIndex = (mTodoIndex + 1) % mTodos.length;
-
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
@@ -78,6 +75,15 @@ public class TodoActivity extends AppCompatActivity {
                 mTodoIndex = (--mTodoIndex < 0) ? mTodos.length-1 : mTodoIndex;
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
+        });
+
+        buttonTodoDetail.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = TodoDetailActivity.newIntent(TodoActivity.this, mTodoIndex);
+                startActivity(intent);
+            }
+
         });
     }
 }
