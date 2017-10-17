@@ -80,6 +80,15 @@ public class TodoActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonPrev = (Button) findViewById(R.id.buttonPrev);
+        buttonPrev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mTodoIndex = (--mTodoIndex < 0) ? mTodos.length-1 : mTodoIndex;
+                textViewTodo.setText(mTodos[mTodoIndex]);
+            }
+        });
+
         Button buttonTodoDetail = (Button) findViewById(R.id.buttonTodoDetail);
         buttonTodoDetail.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -7,10 +7,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.c3451748.todo.TodoActivity">
 
-    <!--style="@style/TextViewTodo"-->
-
     <TextView
         android:id="@+id/textViewTodo"
+        style="@style/TextViewTodo"
         android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginBottom="16dp"
