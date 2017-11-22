@@ -75,6 +75,7 @@ public class TodoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+//              conditional operator "?" used to evaluate if the expression in the brackets is true or false.
                 mTodoIndex = (--mTodoIndex < 0) ? mTodos.length-1 : mTodoIndex;
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
