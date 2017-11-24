@@ -48,6 +48,7 @@ public class TodoActivity extends AppCompatActivity {
 
         // set the user interface layout for this Activity
         // the layout file is defined in the project res/layout/activity_todo.xml file
+        // this is inflation
         setContentView(R.layout.activity_todo);
 
         // check for saved state due to changes such as rotation or back button
@@ -57,6 +58,8 @@ public class TodoActivity extends AppCompatActivity {
         }
 
         // initialize member TextView so we can manipulate it later
+        // using findViewById() to ineract with the widgets in the UI.
+        // This calls managedQuery() to retrieve the cursors for the data being displayed
         final TextView textViewTodo;
         textViewTodo = (TextView) findViewById(R.id.textViewTodo);
 
